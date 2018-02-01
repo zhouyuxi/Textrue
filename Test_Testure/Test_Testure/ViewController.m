@@ -10,11 +10,13 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "TextureModel.h"
 #import "TextureCell.h"
+#import "YYFPSLabel.h"
 
 
 @interface ViewController ()<ASTableDataSource,ASTableDelegate>
 @property (nonatomic,strong) ASTableNode *myTableNode;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @end
 
@@ -27,6 +29,17 @@
     
     [self buildTableNode];
     
+    [self testFPSLabel];
+    
+}
+
+#pragma mark - FPS demo
+
+- (void)testFPSLabel {
+    _fpsLabel = [YYFPSLabel new];
+    _fpsLabel.frame = CGRectMake(200, 200, 50, 30);
+    [_fpsLabel sizeToFit];
+    [self.view addSubview:_fpsLabel];
 }
 
 -(void)buildData

@@ -20,6 +20,8 @@
 		E71078CB20219E90008EDD11 /* LuisXKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E71078C920219E90008EDD11 /* LuisXKit.m */; };
 		E71078CD2021A7E9008EDD11 /* luisX.png in Resources */ = {isa = PBXBuildFile; fileRef = E71078CC2021A7E9008EDD11 /* luisX.png */; };
 		E71078CF2021B879008EDD11 /* home_china_flag.png in Resources */ = {isa = PBXBuildFile; fileRef = E71078CE2021B879008EDD11 /* home_china_flag.png */; };
+		E74C14C82022B04900E8BBB7 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E74C14C52022B04900E8BBB7 /* YYFPSLabel.m */; };
+		E74C14C92022B04900E8BBB7 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E74C14C72022B04900E8BBB7 /* YYWeakProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		E71078CA20219E90008EDD11 /* LuisXKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuisXKit.h; sourceTree = "<group>"; };
 		E71078CC2021A7E9008EDD11 /* luisX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luisX.png; sourceTree = "<group>"; };
 		E71078CE2021B879008EDD11 /* home_china_flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_china_flag.png; sourceTree = "<group>"; };
+		E74C14C42022B04900E8BBB7 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		E74C14C52022B04900E8BBB7 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		E74C14C62022B04900E8BBB7 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		E74C14C72022B04900E8BBB7 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		EC0EA73B76501C364E5624E1 /* Pods_Test_Testure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_Testure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C68A33C0AABCDC525780BD /* Pods-Test_Testure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test_Testure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Test_Testure/Pods-Test_Testure.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +142,7 @@
 		E71078902021708A008EDD11 /* Test_Testure */ = {
 			isa = PBXGroup;
 			children = (
+				E74C14C32022B04900E8BBB7 /* YYFPSLabel */,
 				E71078912021708A008EDD11 /* AppDelegate.h */,
 				E71078922021708A008EDD11 /* AppDelegate.m */,
 				E71078942021708A008EDD11 /* ViewController.h */,
@@ -172,6 +179,17 @@
 				E71078B72021708B008EDD11 /* Info.plist */,
 			);
 			path = Test_TestureUITests;
+			sourceTree = "<group>";
+		};
+		E74C14C32022B04900E8BBB7 /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				E74C14C42022B04900E8BBB7 /* YYFPSLabel.h */,
+				E74C14C52022B04900E8BBB7 /* YYFPSLabel.m */,
+				E74C14C62022B04900E8BBB7 /* YYWeakProxy.h */,
+				E74C14C72022B04900E8BBB7 /* YYWeakProxy.m */,
+			);
+			path = YYFPSLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,9 +401,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74C14C82022B04900E8BBB7 /* YYFPSLabel.m in Sources */,
 				E71078962021708A008EDD11 /* ViewController.m in Sources */,
 				E71078A12021708B008EDD11 /* main.m in Sources */,
 				E71078932021708A008EDD11 /* AppDelegate.m in Sources */,
+				E74C14C92022B04900E8BBB7 /* YYWeakProxy.m in Sources */,
 				E71078C5202195B3008EDD11 /* TextureModel.m in Sources */,
 				E71078CB20219E90008EDD11 /* LuisXKit.m in Sources */,
 				E71078C82021972C008EDD11 /* TextureCell.m in Sources */,

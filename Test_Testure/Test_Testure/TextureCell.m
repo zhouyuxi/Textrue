@@ -9,6 +9,7 @@
 #import "TextureCell.h"
 #import "LuisXKit.h"
 
+
 @implementation TextureCell
 
 {
@@ -20,7 +21,7 @@
     ASTextNode *_normalPriceNode;           //平时价
     ASNetworkImageNode *_nationalFlagNode;  //国旗
     ASTextNode *_nationalNameNode;          //国家名
-
+    ASTextNode *_imageTitleNode;           // 图片上的文字
 }
 
 - (instancetype)initWithModel:(TextureModel *)model
@@ -41,7 +42,7 @@
     _titleNode = [LuisXKit nodeTextNodeAddNode:self];
     _titleNode.attributedText = titleStr;
     _titleNode.maximumNumberOfLines = 0;
-//    _titleNode.style.flexShrink = 1;
+//  _titleNode.style.flexShrink = 1;
     
     
     //开抢时间
@@ -90,12 +91,21 @@
     _normalPriceNode.attributedText = pingshiStr;
     _normalPriceNode.maximumNumberOfLines = 1;
     _normalPriceNode.style.flexShrink = YES;
+    
+    
+    // 图片上的文字
+    NSAttributedString *imageTitle = [LuisXKit nodeAttributesStringText:@"图片上的文字" TextColor:[UIColor redColor] Font:[UIFont systemFontOfSize:12]];
+    _imageTitleNode = [LuisXKit nodeTextNodeAddNode:self];
+//    _imageTitleNode.backgroundColor = [UIColor orangeColor];
+    _imageTitleNode.attributedText = imageTitle;
+    _imageTitleNode.maximumNumberOfLines = 0;
+    _imageTitleNode.style.flexShrink = 1;
 
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-     //国旗/国家---(水平约束)
+     //国旗/国家---(水平约束) 堆叠布局
     ASStackLayoutSpec *guoqiguojiaStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal spacing:5 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsCenter children:@[_nationalFlagNode,_nationalNameNode]];
     
     //特卖/平时---(水平约束)
@@ -115,18 +125,31 @@
     
     
     
+    // INIFINITY（插入无边界） 覆盖布局
+    UIEdgeInsets insets=  UIEdgeInsetsMake(50, 12, 12, 12);
+    ASInsetLayoutSpec * textInsetSpec = [ASInsetLayoutSpec insetLayoutSpecWithInsets: insets child:_imageTitleNode];
+    ASOverlayLayoutSpec *overLayout = [ASOverlayLayoutSpec overlayLayoutSpecWithChild:_networkImageNode
+                                                                              overlay:textInsetSpec];
+    
+    ASStackLayoutSpec *imageOverTitleStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical
+                                                                                     spacing:0
+                                                                              justifyContent:ASStackLayoutJustifyContentStart
+                                                                                  alignItems:ASStackLayoutAlignItemsCenter
+                                                                                    children:@[overLayout]];
+    
+    
     //商品图---(水平约束)
     ASStackLayoutSpec *goodsImageContentStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
                                                                                         spacing:10
                                                                                  justifyContent:ASStackLayoutJustifyContentStart
                                                                                      alignItems:ASStackLayoutAlignItemsStretch
-                                                                                       children:@[_networkImageNode,contentStack]];
+                                                                                       children:@[imageOverTitleStack,contentStack]];
+
     
-    
-    //整体边框---(边框约束)
+    //整体边框---(边框约束) 插入布局
+
     return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
                                                   child:goodsImageContentStack];
-    
     
 }
 
