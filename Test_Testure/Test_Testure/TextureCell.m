@@ -13,7 +13,7 @@
 @implementation TextureCell
 
 {
-    ASTextNode *_titleNode; // 标题
+    ASTextNode *_titleNode;                 // 标题
     ASNetworkImageNode *_networkImageNode; // 图片
     ASButtonNode *_goodsTimeTagNode;        //标签
     ASTextNode *_limitNode;                 //限量
@@ -21,7 +21,7 @@
     ASTextNode *_normalPriceNode;           //平时价
     ASNetworkImageNode *_nationalFlagNode;  //国旗
     ASTextNode *_nationalNameNode;          //国家名
-    ASTextNode *_imageTitleNode;           // 图片上的文字
+    ASTextNode *_imageTitleNode;            // 图片上的文字
 }
 
 - (instancetype)initWithModel:(TextureModel *)model
@@ -32,7 +32,6 @@
         [self setvalueWithModel:model];
     }
     return self;
-    
 }
 
 - (void)setvalueWithModel:(TextureModel *)model
@@ -42,8 +41,7 @@
     _titleNode = [LuisXKit nodeTextNodeAddNode:self];
     _titleNode.attributedText = titleStr;
     _titleNode.maximumNumberOfLines = 0;
-//  _titleNode.style.flexShrink = 1;
-    
+    //_titleNode.style.flexShrink = 1;
     
     //开抢时间
     _goodsTimeTagNode = [LuisXKit nodeButtonNodeAddNode:self Title:@"10:00开抢" TitleColor:[UIColor whiteColor] Font:[UIFont systemFontOfSize:12] CornerRadius:25/2.0 BackgroundColor:[UIColor yellowColor] ContentVerticalAlignment:ASVerticalAlignmentCenter ContentHorizontalAlignment:ASHorizontalAlignmentMiddle];
@@ -70,7 +68,6 @@
     _nationalNameNode.maximumNumberOfLines = 1;
     _nationalNameNode.style.flexShrink = YES;
     
-    
     // 商品图片
     _networkImageNode = [LuisXKit nodeNetworkImageNodeAddNode:self ClipsToBounds:NO ContentMode:UIViewContentModeScaleAspectFill DefaultImage:[UIImage imageNamed:@"luisX.png"]];
     _networkImageNode.URL = [NSURL URLWithString:model.icon];
@@ -78,7 +75,7 @@
     
     // 特卖价
     NSAttributedString *temaiStr = [LuisXKit nodeAttributesStringText:@"特卖价:¥175" TextColor:[UIColor blackColor] Font:[UIFont systemFontOfSize:14]];
-   _specialPriceNode = [LuisXKit nodeTextNodeAddNode:self];
+    _specialPriceNode = [LuisXKit nodeTextNodeAddNode:self];
     //textNode.backgroundColor = [UIColor orangeColor];
     _specialPriceNode.attributedText = temaiStr;
     _specialPriceNode.maximumNumberOfLines = 1;
@@ -96,16 +93,16 @@
     // 图片上的文字
     NSAttributedString *imageTitle = [LuisXKit nodeAttributesStringText:@"图片上的文字" TextColor:[UIColor redColor] Font:[UIFont systemFontOfSize:12]];
     _imageTitleNode = [LuisXKit nodeTextNodeAddNode:self];
-//    _imageTitleNode.backgroundColor = [UIColor orangeColor];
+    //    _imageTitleNode.backgroundColor = [UIColor orangeColor];
     _imageTitleNode.attributedText = imageTitle;
     _imageTitleNode.maximumNumberOfLines = 0;
     _imageTitleNode.style.flexShrink = 1;
-
+    
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-     //国旗/国家---(水平约束) 堆叠布局
+    //国旗/国家---(水平约束) 堆叠布局
     ASStackLayoutSpec *guoqiguojiaStack = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal spacing:5 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsCenter children:@[_nationalFlagNode,_nationalNameNode]];
     
     //特卖/平时---(水平约束)
@@ -144,10 +141,10 @@
                                                                                  justifyContent:ASStackLayoutJustifyContentStart
                                                                                      alignItems:ASStackLayoutAlignItemsStretch
                                                                                        children:@[imageOverTitleStack,contentStack]];
-
+    
     
     //整体边框---(边框约束) 插入布局
-
+    
     return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)
                                                   child:goodsImageContentStack];
     
